@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Lyceo de Pasacao, Inc. — Shaping Tomorrow's Leaders</title>
+  <meta name="description" content="Lyceo de Pasacao, Inc. — A premier private school in Sta. Rosa Del Norte, Pasacao, Camarines Sur, Philippines."/>
+  <meta name="theme-color" content="#0D1F3C"/>
+
+  <!-- Favicons / Tab Icon -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"/>
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png"/>
+  <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* ─── RESET & ROOT ─── */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --navy:#0D1F3C;
+      --navy2:#152d54;
+      --blue:#1A3A6C;
+      --blue2:#1e4a8a;
+      --gold:#C9A84C;
+      --gold2:#e8c96b;
+      --gold3:#f5e4b0;
+      --red:#9B2335;
+      --cream:#FEFDF8;
+      --offwhite:#F7F5EE;
+      --gray:#6B7280;
+      --text:#1a1a2e;
+      --white:#ffffff;
+      --shadow:0 4px 24px rgba(13,31,60,.13);
+      --radius:6px;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;height:auto;display:block}
+    a{color:inherit;text-decoration:none}
+
+    /* ─── TOPBAR ─── */
+    .topbar{
+      background:var(--navy);
+      color:rgba(255,255,255,.65);
+      font-size:12px;
+      padding:7px 1.5rem;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:1rem;
+      flex-wrap:wrap;
+    }
+    .topbar a{color:var(--gold2)}
+    .topbar a:hover{color:var(--white)}
+    .topbar-right{display:flex;gap:1.25rem;flex-wrap:wrap}
+
+    /* ─── NAV ─── */
+    nav{
+      position:sticky;top:0;z-index:1000;
+      background:var(--white);
+      border-bottom:3px solid var(--gold);
+      box-shadow:0 2px 16px rgba(13,31,60,.1);
+    }
+    .nav-inner{
+      max-width:1200px;margin:0 auto;
+      padding:0 1.5rem;height:68px;
+      display:flex;align-items:center;justify-content:space-between;gap:1rem;
+    }
+    .nav-brand{display:flex;align-items:center;gap:12px}
+    .nav-logo{
+      width:48px;height:48px;border-radius:50%;
+      border:2px solid var(--gold);overflow:hidden;
+      background:var(--navy);flex-shrink:0;
+    }
+    .nav-logo img{width:100%;height:100%;object-fit:cover}
+    .nav-title{font-family:'Cinzel',serif;font-size:14px;font-weight:700;color:var(--navy);line-height:1.2;letter-spacing:.03em}
+    .nav-sub{font-size:9px;color:var(--gray);letter-spacing:.1em;text-transform:uppercase;margin-top:2px}
+    .hamburger{
+      display:none;flex-direction:column;gap:5px;
+      cursor:pointer;padding:6px;background:none;border:none;
+      flex-shrink:0;
+    }
+    .hamburger span{display:block;width:22px;height:2px;background:var(--navy);border-radius:2px;transition:.3s}
+    .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+    .nav-links{display:flex;align-items:center;gap:.1rem;list-style:none}
+    .nav-links a{
+      display:block;padding:.4rem .8rem;
+      font-size:12px;font-weight:700;color:var(--navy);
+      letter-spacing:.05em;text-transform:uppercase;
+      border-radius:3px;transition:.2s;white-space:nowrap;
+    }
+    .nav-links a:hover{color:var(--gold);background:rgba(201,168,76,.08)}
+    .nav-enroll{background:var(--navy)!important;color:var(--white)!important;border-radius:3px!important}
+    .nav-enroll:hover{background:var(--blue2)!important;color:var(--white)!important}
+
+    /* Mobile nav */
+    .nav-links.open{
+      display:flex;flex-direction:column;align-items:stretch;
+      position:fixed;top:68px;left:0;right:0;
+      background:var(--white);padding:.75rem 1.5rem 1.5rem;
+      border-top:1px solid rgba(0,0,0,.06);
+      box-shadow:0 8px 24px rgba(0,0,0,.12);
+      gap:.25rem;
+    }
+    .nav-links.open a{padding:.65rem 1rem;border-radius:4px;font-size:14px}
+    .nav-links.open .nav-enroll{text-align:center;margin-top:.5rem;padding:.75rem!important}
+
+    /* ─── HERO ─── */
+    .hero{
+      min-height:95vh;
+      display:flex;align-items:center;justify-content:center;
+      position:relative;overflow:hidden;
+      background:var(--navy);
+      padding:5rem 1.5rem 4rem;
+    }
+    .hero-bg{
+      position:absolute;inset:0;
+      background:
+        radial-gradient(ellipse 80% 60% at 60% 40%,rgba(26,58,108,.7) 0%,transparent 70%),
+        radial-gradient(ellipse 50% 80% at 10% 80%,rgba(155,35,53,.15) 0%,transparent 60%),
+        linear-gradient(160deg,#0a1628 0%,#0D1F3C 40%,#152d54 100%);
+    }
+    .hero-grid{
+      position:absolute;inset:0;
+      background-image:
+        linear-gradient(rgba(201,168,76,.06) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(201,168,76,.06) 1px,transparent 1px);
+      background-size:60px 60px;
+    }
+    .hero-stripe{
+      position:absolute;right:-80px;top:0;bottom:0;width:45%;
+      background:linear-gradient(160deg,rgba(201,168,76,.04) 0%,rgba(201,168,76,.01) 100%);
+      border-left:1px solid rgba(201,168,76,.1);
+      clip-path:polygon(15% 0,100% 0,100% 100%,0% 100%);
+    }
+    .hero-content{
+      position:relative;display:flex;
+      align-items:center;gap:4rem;
+      max-width:1200px;width:100%;
+    }
+    .hero-left{flex:1;min-width:0}
+    .hero-right{flex-shrink:0;display:flex;flex-direction:column;align-items:center}
+    .hero-seal{
+      width:200px;height:200px;border-radius:50%;
+      border:4px solid var(--gold);
+      box-shadow:0 0 0 8px rgba(201,168,76,.1),0 0 60px rgba(201,168,76,.2);
+      overflow:hidden;background:var(--navy2);
+      animation:floatSeal 6s ease-in-out infinite;
+    }
+    .hero-seal img{width:100%;height:100%;object-fit:cover}
+    @keyframes floatSeal{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    .hero-seal-label{
+      margin-top:.75rem;font-size:10px;font-weight:700;
+      color:rgba(255,255,255,.4);letter-spacing:.16em;text-transform:uppercase;
+    }
+    .hero-eyebrow{
+      display:inline-flex;align-items:center;gap:8px;
+      background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.3);
+      border-radius:100px;padding:5px 16px;
+      font-size:10px;font-weight:700;color:var(--gold2);
+      letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.25rem;
+      animation:fadeUp .7s ease both;
+    }
+    .hero-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
+    .hero-title{
+      font-family:'Cinzel',serif;
+      font-size:clamp(2.4rem,5vw,4.5rem);
+      font-weight:900;color:var(--white);
+      line-height:1.05;letter-spacing:.02em;margin-bottom:.4rem;
+      animation:fadeUp .7s .1s ease both;
+    }
+    .hero-title span{color:var(--gold)}
+    .hero-inc{
+      font-family:'Cinzel',serif;font-size:clamp(.9rem,1.8vw,1.2rem);
+      font-weight:400;color:rgba(255,255,255,.4);
+      letter-spacing:.22em;text-transform:uppercase;margin-bottom:1.25rem;
+      animation:fadeUp .7s .2s ease both;
+    }
+    .hero-rule{width:50px;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));margin-bottom:1.25rem;animation:scaleW .7s .25s ease both}
+    .hero-desc{
+      font-size:1rem;font-weight:300;color:rgba(255,255,255,.65);
+      line-height:1.8;max-width:500px;margin-bottom:2rem;
+      animation:fadeUp .7s .3s ease both;
+    }
+    .hero-btns{display:flex;gap:.75rem;flex-wrap:wrap;animation:fadeUp .7s .4s ease both}
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:.8rem 1.75rem;border-radius:3px;
+      font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+      transition:.22s;cursor:pointer;border:none;white-space:nowrap;
+    }
+    .btn-gold{background:var(--gold);color:var(--navy)}
+    .btn-gold:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,.4)}
+    .btn-ghost{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,.28)}
+    .btn-ghost:hover{border-color:var(--gold);color:var(--gold2);transform:translateY(-2px)}
+    .hero-stats{
+      display:flex;gap:2rem;flex-wrap:wrap;
+      margin-top:3rem;padding-top:2.5rem;
+      border-top:1px solid rgba(255,255,255,.1);
+      animation:fadeUp .7s .55s ease both;
+    }
+    .hero-stat-n{font-family:'Cinzel',serif;font-size:1.9rem;font-weight:900;color:var(--gold);line-height:1}
+    .hero-stat-l{font-size:10px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.1em;margin-top:4px}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes scaleW{from{transform:scaleX(0);transform-origin:left}to{transform:scaleX(1)}}
+
+    /* ─── RIBBON ─── */
+    .ribbon{background:linear-gradient(135deg,var(--red) 0%,#7a1b2a 100%);padding:.9rem 1.5rem}
+    .ribbon-inner{
+      max-width:1200px;margin:0 auto;
+      display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+    }
+    .ribbon-left{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+    .ribbon-badge{
+      background:var(--gold);color:var(--navy);
+      font-family:'Cinzel',serif;font-size:9px;font-weight:700;
+      letter-spacing:.1em;text-transform:uppercase;
+      padding:4px 10px;border-radius:2px;flex-shrink:0;white-space:nowrap;
+    }
+    .ribbon-text{font-size:13px;font-weight:700;color:var(--white)}
+    .ribbon-sub{font-size:11px;color:rgba(255,255,255,.65);margin-top:2px}
+    .ribbon-cta{
+      background:var(--white);color:var(--red);
+      font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+      padding:.45rem 1.1rem;border-radius:3px;white-space:nowrap;transition:.2s;flex-shrink:0;
+    }
+    .ribbon-cta:hover{background:var(--gold);color:var(--navy)}
+
+    /* ─── SECTION COMMONS ─── */
+    section{padding:5rem 1.5rem}
+    .container{max-width:1200px;margin:0 auto}
+    .tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
+    .stitle{font-family:'Cinzel',serif;font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:.7rem}
+    .stitle em{font-style:italic;color:var(--gold)}
+    .srule{width:42px;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));margin:1rem 0}
+    .sdesc{font-size:15px;color:var(--gray);line-height:1.8;max-width:580px}
+    .reveal{opacity:0;transform:translateY(22px);transition:.65s ease}
+    .reveal.vis{opacity:1;transform:translateY(0)}
+
+    /* ─── MISSION STRIP ─── */
+    .mission{background:linear-gradient(135deg,var(--navy) 0%,var(--blue) 100%);padding:3.5rem 1.5rem}
+    .mission-grid{
+      max-width:1200px;margin:0 auto;
+      display:grid;grid-template-columns:repeat(3,1fr);
+      background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);overflow:hidden;
+    }
+    .mission-card{padding:2.25rem;text-align:center;border-right:1px solid rgba(255,255,255,.07);transition:.2s}
+    .mission-card:last-child{border-right:none}
+    .mission-card:hover{background:rgba(255,255,255,.06)}
+    .mission-icon{font-size:2rem;margin-bottom:.9rem}
+    .mission-label{font-family:'Cinzel',serif;font-size:12px;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.65rem}
+    .mission-text{font-size:13px;color:rgba(255,255,255,.55);line-height:1.7;font-weight:300}
+
+    /* ─── ABOUT ─── */
+    #about{background:var(--white)}
+    .about-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;align-items:center}
+    .about-img-wrap{position:relative;text-align:center}
+    .about-shield{
+      width:100%;max-width:340px;aspect-ratio:1;
+      margin:0 auto;border-radius:var(--radius);overflow:hidden;
+      border:4px solid var(--gold);box-shadow:0 16px 48px rgba(13,31,60,.16);
+      background:var(--navy);
+    }
+    .about-shield img{width:100%;height:100%;object-fit:contain;padding:1.75rem}
+    .about-float{
+      position:absolute;bottom:-1.5rem;right:0;
+      background:var(--gold);border-radius:var(--radius);
+      padding:1rem 1.25rem;box-shadow:0 8px 28px rgba(201,168,76,.4);
+    }
+    .about-float-n{font-family:'Cinzel',serif;font-size:1.8rem;font-weight:900;color:var(--navy);line-height:1}
+    .about-float-l{font-size:10px;color:rgba(13,31,60,.65);text-transform:uppercase;letter-spacing:.1em}
+    .vals{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-top:1.75rem}
+    .val{padding:1rem 1.1rem;background:var(--offwhite);border-radius:4px;border-left:3px solid var(--gold)}
+    .val-t{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:3px}
+    .val-d{font-size:11.5px;color:var(--gray);line-height:1.6}
+
+    /* ─── PROGRAMS ─── */
+    #programs{background:var(--offwhite);position:relative;overflow:hidden}
+    #programs::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--navy),var(--gold),var(--red),var(--navy))}
+    .pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-top:2.5rem}
+    .pcard{
+      background:var(--white);border-radius:var(--radius);padding:1.75rem 1.4rem;
+      border:1px solid rgba(0,0,0,.06);position:relative;overflow:hidden;transition:.25s;
+    }
+    .pcard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--navy),var(--gold));transform:scaleX(0);transition:.3s;transform-origin:left}
+    .pcard:hover{transform:translateY(-6px);box-shadow:0 18px 44px rgba(13,31,60,.1)}
+    .pcard:hover::after{transform:scaleX(1)}
+    .pcard-num{position:absolute;top:.9rem;right:1.1rem;font-family:'Cinzel',serif;font-size:3rem;font-weight:900;color:rgba(13,31,60,.04);line-height:1}
+    .pcard-icon{font-size:1.75rem;margin-bottom:1.1rem}
+    .pcard-lvl{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.35rem}
+    .pcard-name{font-family:'Cinzel',serif;font-size:1.05rem;font-weight:700;color:var(--navy);margin-bottom:.65rem}
+    .pcard-desc{font-size:12.5px;color:var(--gray);line-height:1.65}
+
+    /* ─── WHY ─── */
+    #why{background:var(--navy);position:relative;overflow:hidden}
+    #why .stitle{color:var(--white)}
+    #why .sdesc{color:rgba(255,255,255,.5)}
+    .why-bg-seal{position:absolute;right:-80px;bottom:-60px;width:380px;height:380px;opacity:.04}
+    .why-bg-seal img{width:100%;height:100%;object-fit:contain}
+    .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.75rem;margin-top:2.75rem}
+    .why-card{display:flex;gap:1.1rem;align-items:flex-start}
+    .why-icon{width:48px;height:48px;border-radius:10px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+    .why-t{font-size:14px;font-weight:700;color:var(--white);margin-bottom:.3rem}
+    .why-d{font-size:12.5px;color:rgba(255,255,255,.48);line-height:1.65}
+
+    /* ─── NEWS / FACEBOOK FEEDS ─── */
+    #news{background:var(--white)}
+    .news-header{text-align:center;margin-bottom:3rem}
+    .news-header .srule{margin:1rem auto}
+    .news-header .sdesc{margin:0 auto;text-align:center}
+    .feeds-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start}
+    .feed-col{}
+    .feed-label{
+      display:flex;align-items:center;gap:10px;
+      font-family:'Cinzel',serif;font-size:13px;font-weight:700;
+      color:var(--navy);margin-bottom:1rem;padding-bottom:.75rem;
+      border-bottom:2px solid var(--gold);
+    }
+    .feed-label span{
+      display:inline-block;background:var(--navy);color:var(--white);
+      font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+      padding:3px 8px;border-radius:2px;
+    }
+    .fb-page-wrap{
+      border-radius:var(--radius);overflow:hidden;
+      border:1px solid rgba(0,0,0,.08);
+      box-shadow:var(--shadow);
+      background:var(--offwhite);
+    }
+    /* Responsive Facebook SDK embed */
+    .fb-page-wrap .fb-page{display:block!important}
+    .fb-fallback{
+      padding:1.5rem;text-align:center;
+      background:var(--offwhite);border-radius:var(--radius);
+    }
+    .fb-fallback-icon{font-size:2.5rem;margin-bottom:.75rem}
+    .fb-fallback-title{font-family:'Cinzel',serif;font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:.4rem}
+    .fb-fallback-desc{font-size:12px;color:var(--gray);line-height:1.6;margin-bottom:1rem}
+    .fb-fallback-btn{
+      display:inline-flex;align-items:center;gap:6px;
+      background:var(--navy);color:var(--white);
+      padding:.6rem 1.25rem;border-radius:3px;
+      font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+      transition:.2s;
+    }
+    .fb-fallback-btn:hover{background:var(--blue2)}
+    .fb-note{
+      font-size:11px;color:var(--gray);margin-top:.75rem;
+      padding:.6rem .9rem;background:var(--offwhite);
+      border-radius:4px;border-left:3px solid var(--gold);
+      line-height:1.55;
+    }
+
+    /* ─── ADMISSIONS ─── */
+    #admissions{background:var(--offwhite)}
+    .adm-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+    .steps{list-style:none;margin-top:1.75rem}
+    .step{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.5rem}
+    .step-n{width:36px;height:36px;border-radius:50%;background:var(--cream);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:14px;font-weight:700;color:var(--gold);flex-shrink:0}
+    .step-t{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:3px}
+    .step-d{font-size:12px;color:var(--gray);line-height:1.6}
+    .req-box{background:var(--white);border-radius:var(--radius);padding:1.75rem;border:1px solid rgba(0,0,0,.05)}
+    .req-title{font-family:'Cinzel',serif;font-size:.95rem;font-weight:700;color:var(--navy);margin-bottom:.9rem}
+    .req-list{list-style:none}
+    .req-list li{display:flex;align-items:flex-start;gap:9px;font-size:12.5px;color:var(--text);padding:.5rem 0;border-bottom:1px solid rgba(0,0,0,.045);line-height:1.5}
+    .req-list li:last-child{border-bottom:none}
+    .req-list li::before{content:'✓';color:var(--gold);font-weight:700;flex-shrink:0}
+    .adm-cta{margin-top:1.25rem;background:var(--navy);border-radius:var(--radius);padding:1.4rem;text-align:center}
+    .adm-cta p{font-size:12.5px;color:rgba(255,255,255,.6);margin-bottom:.9rem;line-height:1.6}
+    .adm-cta .btn{width:100%;justify-content:center;border-radius:3px}
+
+    /* ─── CONTACT ─── */
+    #contact{background:var(--white)}
+    .con-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start}
+    .con-items{display:flex;flex-direction:column;gap:1.35rem}
+    .con-item{display:flex;gap:.9rem;align-items:flex-start}
+    .con-icon{width:44px;height:44px;border-radius:8px;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+    .con-lbl{font-size:9px;font-weight:700;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px}
+    .con-val{font-size:13.5px;color:var(--text);line-height:1.6}
+    .con-val a:hover{color:var(--gold)}
+    .hours-box{
+      background:var(--offwhite);border-radius:var(--radius);
+      padding:1.1rem 1.25rem;border:1px solid rgba(0,0,0,.05);
+      display:grid;grid-template-columns:1fr 1fr;gap:.45rem;margin-top:1.25rem;
+    }
+    .h-day{font-size:11.5px;font-weight:700;color:var(--navy)}
+    .h-time{font-size:11.5px;color:var(--gray);text-align:right}
+    .map-wrap{border-radius:var(--radius);overflow:hidden;border:3px solid var(--gold);box-shadow:var(--shadow)}
+    .map-wrap iframe{display:block;width:100%;height:320px;border:none}
+    .map-btns{display:flex;gap:.65rem;margin-top:.9rem}
+    .btn-navy{background:var(--navy);color:var(--white);padding:.65rem 1.1rem;border-radius:3px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;flex:1;text-align:center;transition:.2s}
+    .btn-navy:hover{background:var(--blue2)}
+    .btn-fb-btn{background:var(--white);color:var(--navy);border:1.5px solid var(--navy);padding:.65rem 1.1rem;border-radius:3px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;flex:1;text-align:center;transition:.2s}
+    .btn-fb-btn:hover{background:var(--navy);color:var(--white)}
+
+    /* ─── FOOTER ─── */
+    footer{background:var(--navy);color:rgba(255,255,255,.5);padding:3rem 1.5rem 2rem}
+    .footer-inner{max-width:1200px;margin:0 auto}
+    .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.5rem;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:2rem}
+    .footer-brand{display:flex;align-items:center;gap:12px;margin-bottom:.9rem}
+    .footer-logo{width:42px;height:42px;border-radius:50%;border:2px solid var(--gold);overflow:hidden;background:var(--navy2);flex-shrink:0}
+    .footer-logo img{width:100%;height:100%;object-fit:cover}
+    .footer-name{font-family:'Cinzel',serif;font-size:13px;font-weight:700;color:var(--white)}
+    .footer-desc{font-size:12.5px;line-height:1.75;max-width:300px}
+    .fh{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold2);margin-bottom:.9rem}
+    .flinks{list-style:none}
+    .flinks li{margin-bottom:.45rem}
+    .flinks a{font-size:12.5px;color:rgba(255,255,255,.42);transition:.2s}
+    .flinks a:hover{color:var(--gold2)}
+    .footer-bot{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:rgba(255,255,255,.3);flex-wrap:wrap;gap:.5rem}
+    .footer-bot a{color:var(--gold)}
+
+    /* ─── RESPONSIVE ─── */
+    @media(max-width:1024px){
+      .hero-content{flex-direction:column-reverse;text-align:center;gap:2.5rem}
+      .hero-rule,.srule{margin-left:auto;margin-right:auto}
+      .hero-desc{margin:0 auto 2rem}
+      .hero-btns{justify-content:center}
+      .hero-stats{justify-content:center}
+      .hero-seal{width:150px;height:150px}
+      .hero-stripe{display:none}
+    }
+    @media(max-width:900px){
+      .nav-links{display:none}
+      .hamburger{display:flex}
+      .feeds-grid{grid-template-columns:1fr}
+      .about-grid,.adm-grid,.con-grid,.why-grid{grid-template-columns:1fr;gap:2.5rem}
+      .pgrid{grid-template-columns:1fr 1fr}
+      .mission-grid{grid-template-columns:1fr}
+      .mission-card{border-right:none;border-bottom:1px solid rgba(255,255,255,.07)}
+      .mission-card:last-child{border-bottom:none}
+      .footer-top{grid-template-columns:1fr;gap:1.75rem}
+      .footer-bot{flex-direction:column;text-align:center}
+      .vals{grid-template-columns:1fr}
+      .about-float{bottom:-1rem;right:0}
+    }
+    @media(max-width:640px){
+      .pgrid{grid-template-columns:1fr}
+      section{padding:3.5rem 1rem}
+      .topbar{font-size:11px;padding:6px 1rem}
+      .hero{padding:4rem 1rem 3rem}
+      .hero-stats{flex-direction:column;gap:1.25rem;align-items:flex-start}
+      .hero-stats > div{display:flex;align-items:baseline;gap:.75rem}
+      .hero-stat-l{margin-top:0}
+      .map-btns{flex-direction:column}
+      .ribbon-inner{flex-direction:column;gap:.75rem}
+      .feeds-grid{gap:2rem}
+      .footer-top{gap:1.5rem}
+    }
+    @media(max-width:400px){
+      .nav-title{font-size:12px}
+      .hero-title{font-size:2.1rem}
+      .stitle{font-size:1.5rem}
+    }
+  </style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="topbar">
+  <div>📍 Sta. Rosa Del Norte, Pasacao, Camarines Sur — Region V, Bicol</div>
+  <div class="topbar-right">
+    <span>📞 <a href="tel:+63545139292">(054) 513-9292</a></span>
+    <span>✉️ <a href="mailto:mean_seva@yahoo.com">mean_seva@yahoo.com</a></span>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">
+      <div class="nav-logo">
+        <img src="logo.jpg" alt="Lyceo de Pasacao seal"/>
+      </div>
+      <div>
+        <div class="nav-title">Lyceo de Pasacao</div>
+        <div class="nav-sub">Inc. · Private School · Cam. Sur</div>
+      </div>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="#about">About</a></li>
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#why">Why Lyceo</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#admissions">Admissions</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#admissions" class="nav-enroll">Enroll Now</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-stripe"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Private School · Pasacao, Camarines Sur</div>
+      <h1 class="hero-title">Lyceo de<br><span>Pasacao</span></h1>
+      <p class="hero-inc">Incorporated · Region V · Bicol</p>
+      <div class="hero-rule"></div>
+      <p class="hero-desc">Shaping tomorrow's leaders through quality education, strong Filipino values, and a nurturing community in the heart of Camarines Sur.</p>
+      <div class="hero-btns">
+        <a href="#admissions" class="btn btn-gold">Enroll Now →</a>
+        <a href="#about" class="btn btn-ghost">Discover Our School</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="hero-stat-n">K–12</div><div class="hero-stat-l">Complete Program</div></div>
+        <div><div class="hero-stat-n">4</div><div class="hero-stat-l">School Levels</div></div>
+        <div><div class="hero-stat-n">Mon–Fri</div><div class="hero-stat-l">8 AM – 5 PM</div></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-seal">
+        <img src="logo.jpg" alt="Official Seal of Lyceo de Pasacao"/>
+      </div>
+      <div class="hero-seal-label">Official School Seal</div>
+    </div>
+  </div>
+</section>
+
+<!-- Ribbon -->
+<div class="ribbon">
+  <div class="ribbon-inner">
+    <div class="ribbon-left">
+      <div class="ribbon-badge">🎓 Enrollment Open</div>
+      <div>
+        <div class="ribbon-text">School Year 2025–2026 Enrollment is Now Open!</div>
+        <div class="ribbon-sub">Visit our school office — Monday to Friday, 8:00 AM – 5:00 PM</div>
+      </div>
+    </div>
+    <a href="#admissions" class="ribbon-cta">Learn More →</a>
+  </div>
+</div>
+
+<!-- Mission -->
+<div class="mission">
+  <div class="mission-grid">
+    <div class="mission-card reveal">
+      <div class="mission-icon">🎯</div>
+      <div class="mission-label">Our Mission</div>
+      <div class="mission-text">To provide high-quality, values-based education that empowers every learner to reach their full potential and contribute meaningfully to society.</div>
+    </div>
+    <div class="mission-card reveal" style="transition-delay:.1s">
+      <div class="mission-icon">🌟</div>
+      <div class="mission-label">Our Vision</div>
+      <div class="mission-text">A leading private school in Bicol producing globally competitive, morally upright graduates rooted in Filipino identity and culture.</div>
+    </div>
+    <div class="mission-card reveal" style="transition-delay:.2s">
+      <div class="mission-icon">⚖️</div>
+      <div class="mission-label">Core Values</div>
+      <div class="mission-text">Excellence · Integrity · Compassion · Respect · Service — guiding every student, educator, and family in the Lyceo community.</div>
+    </div>
+  </div>
+</div>
+
+<!-- About -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal">
+        <div class="about-shield">
+          <img src="logo.jpg" alt="Lyceo de Pasacao Official Seal"/>
+        </div>
+        <div class="about-float">
+          <div class="about-float-n">Reg. V</div>
+          <div class="about-float-l">Bicol Region</div>
+        </div>
+      </div>
+      <div class="reveal" style="transition-delay:.12s">
+        <div class="tag">About Our School</div>
+        <h2 class="stitle">Excellence in Education,<br><em>Rooted in Community</em></h2>
+        <div class="srule"></div>
+        <p class="sdesc">Lyceo de Pasacao, Inc. is a trusted private school in Sta. Rosa Del Norte, Pasacao, Camarines Sur. Under the leadership of School Administrator Mary Ann O. Seva, we deliver holistic education aligned with the Department of Education's K–12 standards.</p>
+        <p class="sdesc" style="margin-top:.9rem">As a recognized DepEd institution in Region V – Bicol Region, we serve Pasacao and surrounding communities with dedicated educators and a comprehensive curriculum that prepares students for life beyond the classroom.</p>
+        <div class="vals">
+          <div class="val"><div class="val-t">Academic Excellence</div><div class="val-d">Rigorous, DepEd-aligned curriculum building a strong foundation for every student.</div></div>
+          <div class="val"><div class="val-t">Character Formation</div><div class="val-d">Instilling integrity, respect, and responsibility as the cornerstone of student life.</div></div>
+          <div class="val"><div class="val-t">Community Engagement</div><div class="val-d">Building strong ties with families and the broader Pasacao community we serve.</div></div>
+          <div class="val"><div class="val-t">Holistic Growth</div><div class="val-d">Nurturing intellectual, physical, social, and spiritual development of every learner.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Programs -->
+<section id="programs">
+  <div class="container">
+    <div class="reveal" style="text-align:center;max-width:560px;margin:0 auto 0">
+      <div class="tag">Academic Programs</div>
+      <h2 class="stitle">Complete K–12 <em>Education</em></h2>
+      <div class="srule" style="margin:1rem auto"></div>
+      <p class="sdesc" style="margin:0 auto;text-align:center">Four levels of quality education — from early childhood to senior high school.</p>
+    </div>
+    <div class="pgrid">
+      <div class="pcard reveal">
+        <div class="pcard-num">01</div>
+        <div class="pcard-icon">🌱</div>
+        <div class="pcard-lvl">Level 1</div>
+        <div class="pcard-name">Pre-School</div>
+        <div class="pcard-desc">A nurturing early childhood environment fostering curiosity, creativity, and foundational skills through guided play-based learning.</div>
+      </div>
+      <div class="pcard reveal" style="transition-delay:.1s">
+        <div class="pcard-num">02</div>
+        <div class="pcard-icon">📚</div>
+        <div class="pcard-lvl">Level 2</div>
+        <div class="pcard-name">Elementary</div>
+        <div class="pcard-desc">Grades 1–6 building strong foundations in Math, Science, Filipino, English, and Araling Panlipunan aligned with DepEd standards.</div>
+      </div>
+      <div class="pcard reveal" style="transition-delay:.2s">
+        <div class="pcard-num">03</div>
+        <div class="pcard-icon">🎓</div>
+        <div class="pcard-lvl">Level 3</div>
+        <div class="pcard-name">Junior High School</div>
+        <div class="pcard-desc">Grades 7–10 developing critical thinking, collaboration, and academic depth across all K–12 core learning areas.</div>
+      </div>
+      <div class="pcard reveal" style="transition-delay:.3s">
+        <div class="pcard-num">04</div>
+        <div class="pcard-icon">🚀</div>
+        <div class="pcard-lvl">Level 4</div>
+        <div class="pcard-name">Senior High School</div>
+        <div class="pcard-desc">Grades 11–12 with specialized tracks preparing students for college, tech-voc education, employment, or entrepreneurship.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Lyceo -->
+<section id="why">
+  <div class="why-bg-seal"><img src="logo.jpg" alt=""/></div>
+  <div class="container">
+    <div class="reveal">
+      <div class="tag" style="color:var(--gold2)">Why Choose Us</div>
+      <h2 class="stitle">What Makes <em>Lyceo</em> Different</h2>
+      <div class="srule"></div>
+      <p class="sdesc">We go beyond textbooks — shaping the whole person for a life of purpose, excellence, and service.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal" style="transition-delay:.1s"><div class="why-icon">🏫</div><div><div class="why-t">DepEd Accredited</div><div class="why-d">Fully recognized by DepEd Region V – Bicol Region, ensuring quality and credibility in every program we offer.</div></div></div>
+      <div class="why-card reveal" style="transition-delay:.2s"><div class="why-icon">👩‍🏫</div><div><div class="why-t">Dedicated Faculty</div><div class="why-d">Experienced and passionate teachers committed to guiding every student toward their full potential across all school levels.</div></div></div>
+      <div class="why-card reveal" style="transition-delay:.3s"><div class="why-icon">🏡</div><div><div class="why-t">Safe & Nurturing Campus</div><div class="why-d">A secure, welcoming environment where students feel at home, supported by caring staff, peers, and a strong parent community.</div></div></div>
+      <div class="why-card reveal" style="transition-delay:.4s"><div class="why-icon">⭐</div><div><div class="why-t">Values-Based Education</div><div class="why-d">Character formation is at our core — building young Filipinos with integrity, compassion, and civic responsibility.</div></div></div>
+      <div class="why-card reveal" style="transition-delay:.5s"><div class="why-icon">📍</div><div><div class="why-t">Locally Rooted</div><div class="why-d">Proudly serving Pasacao and surrounding barangays with accessible, affordable, quality private education close to home.</div></div></div>
+      <div class="why-card reveal" style="transition-delay:.6s"><div class="why-icon">🤝</div><div><div class="why-t">Strong Parent Partnership</div><div class="why-d">Education is a shared journey — parents are welcomed as active, valued partners in every student's growth.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── NEWS & UPDATES (Facebook Feeds) ─── -->
+<section id="news">
+  <div class="container">
+    <div class="news-header reveal">
+      <div class="tag">Latest Updates</div>
+      <h2 class="stitle">News & <em>Announcements</em></h2>
+      <div class="srule"></div>
+      <p class="sdesc">Stay connected with the latest news, events, and announcements from our official Facebook pages. Posts from these pages appear here automatically.</p>
+    </div>
+    <div class="feeds-grid">
+
+      <!-- Official School Page -->
+      <div class="feed-col reveal">
+        <div class="feed-label">
+          <span>Official</span>
+          Lyceo de Pasacao
+        </div>
+        <div class="fb-page-wrap" id="feed-official">
+          <!-- Facebook Page Plugin loads here -->
+          <div class="fb-page"
+            data-href="https://www.facebook.com/LyceoOfficial"
+            data-tabs="timeline"
+            data-width=""
+            data-height="600"
+            data-small-header="true"
+            data-adapt-container-width="true"
+            data-hide-cover="false"
+            data-show-facepile="false">
+          </div>
+        </div>
+        <div class="fb-note">
+          Posts from the official school page appear above automatically. Follow us on
+          <a href="https://www.facebook.com/LyceoOfficial" target="_blank" rel="noopener" style="color:var(--gold);font-weight:700">Facebook</a> to stay updated.
+        </div>
+      </div>
+
+      <!-- The Trench Page -->
+      <div class="feed-col reveal" style="transition-delay:.15s">
+        <div class="feed-label">
+          <span>Student</span>
+          The Trench
+        </div>
+        <div class="fb-page-wrap" id="feed-trench">
+          <div class="fb-page"
+            data-href="https://www.facebook.com/profile.php?id=61570101399221"
+            data-tabs="timeline"
+            data-width=""
+            data-height="600"
+            data-small-header="true"
+            data-adapt-container-width="true"
+            data-hide-cover="false"
+            data-show-facepile="false">
+          </div>
+        </div>
+        <div class="fb-note">
+          The Trench is the student publication page of Lyceo de Pasacao. Follow on
+          <a href="https://www.facebook.com/profile.php?id=61570101399221" target="_blank" rel="noopener" style="color:var(--gold);font-weight:700">Facebook</a> for student news and features.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Admissions -->
+<section id="admissions">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:2.75rem">
+      <div class="tag">Enrollment</div>
+      <h2 class="stitle" style="margin:0 auto">How to <em>Join Our Family</em></h2>
+      <div class="srule" style="margin:1rem auto"></div>
+      <p class="sdesc" style="margin:0 auto;text-align:center">Follow these simple steps to enroll your child at Lyceo de Pasacao, Inc.</p>
+    </div>
+    <div class="adm-grid">
+      <div class="reveal">
+        <h3 style="font-family:'Cinzel',serif;font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:.4rem">Enrollment Process</h3>
+        <ul class="steps">
+          <li class="step"><div class="step-n">1</div><div><div class="step-t">Visit the School Office</div><div class="step-d">Come to Sta. Rosa Del Norte, Pasacao, Cam. Sur during office hours: Monday–Friday, 8:00 AM – 5:00 PM.</div></div></li>
+          <li class="step"><div class="step-n">2</div><div><div class="step-t">Submit Requirements</div><div class="step-d">Prepare and submit all required documents. Our admissions staff will guide you through the process.</div></div></li>
+          <li class="step"><div class="step-n">3</div><div><div class="step-t">Assessment & Orientation</div><div class="step-d">Students may be assessed for grade level placement. A brief parent and student orientation may be conducted.</div></div></li>
+          <li class="step"><div class="step-n">4</div><div><div class="step-t">Pay Enrollment Fees</div><div class="step-d">Settle applicable fees. Payment schedules and options are available — inquire at the school office.</div></div></li>
+          <li class="step"><div class="step-n">5</div><div><div class="step-t">Welcome to Lyceo!</div><div class="step-d">Receive your schedule, school ID, and materials. You're now part of the Lyceo family!</div></div></li>
+        </ul>
+      </div>
+      <div class="reveal" style="transition-delay:.15s">
+        <div class="req-box">
+          <div class="req-title">📋 Documents Required</div>
+          <ul class="req-list">
+            <li>PSA Birth Certificate (original and photocopy)</li>
+            <li>Report Card / Form 138 from previous school</li>
+            <li>Good Moral Certificate (for transferees)</li>
+            <li>Certificate of Completion or Diploma</li>
+            <li>2×2 ID Photos — at least 2 copies</li>
+            <li>Barangay Certificate of Residency</li>
+            <li>Medical Certificate or Health Record</li>
+            <li>Form 137 / School Records (for transferees)</li>
+          </ul>
+        </div>
+        <div class="adm-cta">
+          <p>Have questions about enrollment? Our admissions office is happy to assist. Call or visit us during office hours.</p>
+          <a href="tel:+63545139292" class="btn btn-gold">📞 Call: (054) 513-9292</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:2.75rem">
+      <div class="tag">Get in Touch</div>
+      <h2 class="stitle">Visit or <em>Contact Us</em></h2>
+      <div class="srule"></div>
+    </div>
+    <div class="con-grid">
+      <div class="reveal">
+        <div class="con-items">
+          <div class="con-item"><div class="con-icon">📍</div><div><div class="con-lbl">Address</div><div class="con-val">Sta. Rosa Del Norte, Pasacao<br>Camarines Sur, Philippines<br>Region V – Bicol Region</div></div></div>
+          <div class="con-item"><div class="con-icon">📞</div><div><div class="con-lbl">Telephone / Fax</div><div class="con-val"><a href="tel:+63545139292">(054) 513-9292</a></div></div></div>
+          <div class="con-item"><div class="con-icon">✉️</div><div><div class="con-lbl">Email Address</div><div class="con-val"><a href="mailto:mean_seva@yahoo.com">mean_seva@yahoo.com</a></div></div></div>
+          <div class="con-item"><div class="con-icon">👤</div><div><div class="con-lbl">School Administrator</div><div class="con-val">Mary Ann O. Seva</div></div></div>
+          <div class="con-item">
+            <div class="con-icon">📘</div>
+            <div>
+              <div class="con-lbl">Facebook Pages</div>
+              <div class="con-val">
+                <a href="https://www.facebook.com/LyceoOfficial" target="_blank" rel="noopener" style="color:var(--gold)">Lyceo de Pasacao (Official)</a><br>
+                <a href="https://www.facebook.com/profile.php?id=61570101399221" target="_blank" rel="noopener" style="color:var(--gold)">The Trench (Student Publication)</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hours-box">
+          <div class="h-day">Monday</div><div class="h-time">8:00 AM – 5:00 PM</div>
+          <div class="h-day">Tuesday</div><div class="h-time">8:00 AM – 5:00 PM</div>
+          <div class="h-day">Wednesday</div><div class="h-time">8:00 AM – 5:00 PM</div>
+          <div class="h-day">Thursday</div><div class="h-time">8:00 AM – 5:00 PM</div>
+          <div class="h-day">Friday</div><div class="h-time">8:00 AM – 5:00 PM</div>
+          <div class="h-day">Sat – Sun</div><div class="h-time">Closed</div>
+        </div>
+      </div>
+      <div class="reveal" style="transition-delay:.15s">
+        <div class="map-wrap">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.5!2d123.0409977!3d13.5183658!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a227b741e02f0d%3A0xb8bd1a05f9f3601!2sLyceo+de+Pasacao!5e0!3m2!1sen!2sph!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Lyceo de Pasacao on Google Maps"></iframe>
+        </div>
+        <div class="map-btns">
+          <a href="https://www.google.com/maps/place/Lyceo+de+Pasacao/@13.5183658,123.0409977" target="_blank" rel="noopener" class="btn-navy">Get Directions</a>
+          <a href="https://www.facebook.com/LyceoOfficial" target="_blank" rel="noopener" class="btn-fb-btn">Facebook Page</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <div class="footer-logo"><img src="logo.jpg" alt="Lyceo de Pasacao seal"/></div>
+          <div class="footer-name">Lyceo de Pasacao, Inc.</div>
+        </div>
+        <p class="footer-desc">A private school dedicated to quality education and holistic development in Pasacao, Camarines Sur — shaping tomorrow's leaders, one student at a time.</p>
+      </div>
+      <div>
+        <div class="fh">Quick Links</div>
+        <ul class="flinks">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#why">Why Lyceo</a></li>
+          <li><a href="#news">News & Updates</a></li>
+          <li><a href="#admissions">Admissions</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="fh">Connect With Us</div>
+        <ul class="flinks">
+          <li><a href="https://www.facebook.com/LyceoOfficial" target="_blank" rel="noopener">📘 Official Facebook Page</a></li>
+          <li><a href="https://www.facebook.com/profile.php?id=61570101399221" target="_blank" rel="noopener">📰 The Trench Publication</a></li>
+          <li><a href="tel:+63545139292">📞 (054) 513-9292</a></li>
+          <li><a href="mailto:mean_seva@yahoo.com">✉️ mean_seva@yahoo.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <p>© 2025 Lyceo de Pasacao, Inc. All rights reserved.</p>
+      <p>Sta. Rosa Del Norte, Pasacao, Camarines Sur · <a href="tel:+63545139292">(054) 513-9292</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── FACEBOOK SDK (auto-updates feed from both pages) ─── -->
+<div id="fb-root"></div>
+<script>
+  // Facebook Page Plugin SDK - loads both feeds automatically
+  window.fbAsyncInit = function() {
+    FB.init({ xfbml: true, version: 'v19.0' });
+  };
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<script>
+  // ─ Mobile nav toggle ─
+  const ham = document.getElementById('hamburger');
+  const nl  = document.getElementById('nav-links');
+  ham.addEventListener('click', () => {
+    const open = nl.classList.toggle('open');
+    ham.classList.toggle('open', open);
+    ham.setAttribute('aria-expanded', open);
+  });
+  // Close on link click
+  nl.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    nl.classList.remove('open');
+    ham.classList.remove('open');
+    ham.setAttribute('aria-expanded', 'false');
+  }));
+  // Close on outside click
+  document.addEventListener('click', e => {
+    if (!nav.contains(e.target)) {
+      nl.classList.remove('open');
+      ham.classList.remove('open');
+    }
+  });
+
+  // ─ Scroll reveal ─
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // ─ Navbar shadow on scroll ─
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.style.boxShadow = window.scrollY > 20
+      ? '0 4px 20px rgba(13,31,60,.18)'
+      : '0 2px 16px rgba(13,31,60,.1)';
+  }, { passive: true });
+</script>
+
+</body>
+</html>
